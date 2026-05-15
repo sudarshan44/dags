@@ -1,5 +1,5 @@
 from airflow import DAG
-from airflow.providers.postgres.operators.sql import SQLExecuteQueryOperator
+from airflow.providers.common.sql.operators.sql import SQLExecuteQueryOperator
 from datetime import datetime
 
 with DAG(
