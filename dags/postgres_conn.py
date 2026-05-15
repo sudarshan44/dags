@@ -4,7 +4,7 @@ from datetime import datetime
 
 with DAG(
     dag_id="postgres_test_dag",
-    start_date=datetime(2024, 1, 1),
+    start_date=datetime(2025, 1, 1),
     schedule=None,
     catchup=False,
 ) as dag:
@@ -12,5 +12,6 @@ with DAG(
     test_postgres = SQLExecuteQueryOperator(
         task_id="test_postgres",
         conn_id="postgres",
-        sql="select * from budgetary_scheme_expenditure_details LIMIT 5;",
+        sql="SELECT * FROM budgetary_scheme_expenditure_details LIMIT 5;",
+        show_return_value_in_logs=True,
     )
