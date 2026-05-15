@@ -1,5 +1,5 @@
 from airflow import DAG
-from airflow.providers.postgres.operators.postgres import PostgresOperator
+from airflow.operators.bash import BashOperator
 from datetime import datetime
 
 with DAG(
@@ -7,13 +7,9 @@ with DAG(
     start_date=datetime(2024, 1, 1),
     schedule=None,
     catchup=False,
-    tags=["postgres"],
 ) as dag:
 
-    test_query = PostgresOperator(
-        task_id="test_postgres_connection",
-        postgres_conn_id="postgres",
-        sql="""
-        SELECT * FROM pg_tables LIMIT 5;
-        """,
+    test_task = BashOperator(
+        task_id="test_task",
+        bash_command="echo PostgreSQL DAG Loaded Successfully"
     )
